@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ThomasGreg.Domain.Models
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            @{
+                var user = await UserManager.GetUserAsync(User);
+            }
+            <a class="nav-link text-dark" title="Manage">@user?.CustomName</a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-controller="Accounts" asp-action="Logout" id="logoutForm">
+                <button type="submit" class="nav-link btn btn-link text-dark">Sair</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Accounts" asp-action="Login">Entrar</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-success" asp-controller="Accounts" asp-action="Register">Nova Conta</a>
+        </li>
+    }
+</ul>
