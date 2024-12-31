@@ -9,10 +9,10 @@ namespace ThomasGreg.Infrastructure.Mappings
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.Property(p => p.FirstName)
-                .IsRequired().HasMaxLength(50);
+                .IsRequired().HasMaxLength(100);
 
             builder.Property(p => p.LastName)
-                .IsRequired().HasMaxLength(50);
+                .IsRequired().HasMaxLength(100);
 
             builder.Property(p => p.CustomName)
                 .IsRequired().HasMaxLength(256);
